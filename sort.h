@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* print_array */
 void print_array(const int *array, size_t size);
@@ -24,5 +25,43 @@ typedef struct listint_s
 	struct listint_s *prev;
 	struct listint_s *next;
 } listint_t;
+
+/** 0 */
+void bubble_sort(int *array, size_t size);
+
+/** 1 */
+void insertion_sort_list(listint_t **list);
+void swapem(listint_t *l, listint_t *r, listint_t **h);
+
+/** 2 */
+void selection_sort(int *array, size_t size);
+
+/** 3 */
+void quick_sort(int *array, size_t size);
+int partition(int *a, int l, int h);
+void qs(int *a, int l, int h);
+
+/** 4 */
+void shell_sort(int *array, size_t size);
+
+/** 5 */
+void cocktail_sort_list(listint_t **list);
+
+/** 6 */
+void counting_sort(int *array, size_t size);
+int findmax(int *array, size_t size);
+int count(int *array, size_t size, int val);
+
+/** 7 */
+void merge_sort(int *array, size_t size);
+void merge(int *array, int low, int middle, int high, int *temp);
+void merge_sorty(int *array, int low, int high, int *temp);
+
+/** 8 */
+void heap_sort(int *array, size_t size);
+
+/** 9 */
+void radix_sort(int *array, size_t size);
+void counting_sort_r(int *array, size_t size, int pos, int *out, int *ca);
 
 #endif /* SORT_H */
