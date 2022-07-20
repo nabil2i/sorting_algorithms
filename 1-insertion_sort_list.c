@@ -1,55 +1,56 @@
 #include "sort.h"
 
 /**
-* swapem - Swaps tha nodes
-* @l: left or lower node
-* @r: right or later node
-* @h: Head of dlist
+* swap - Swaps tha nodes
+* @node1: node1 or lower node
+* @node2: node2 or later node
+* @h: Head of the list
 */
 
-void swapem(listint_t *l, listint_t *r, listint_t **h)
+void swap(listint_t *node1, listint_t *node2, listint_t **h)
 {
 	listint_t *temp;
 
-	temp = l->prev;
+	temp = node1->prev;
 	if (temp)
-		temp->next = r;
-	r->prev = temp;
-	l->prev = r;
-	l->next = r->next;
-	r->next = l;
-	if (l->next != NULL)
-		l->next->prev = l;
-	if (r->prev == NULL)
-		*h = r;
+		temp->next = node2;
+	node2->prev = temp;
+	node1->prev = node2;
+	node1->next = node2->next;
+	node2->next = node1;
+	if (node1->next != NULL)
+		node1->next->prev = node1;
+	if (node2->prev == NULL)
+		*h = node2;
 	print_list(*h);
 }
 
 /**
 * insertion_sort_list - sorts a doubly linked list of integers
-* @list: Head of dlist
+*	in ascending order
+* @list: Head of the list
 */
 
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *curr, *next, *prev, *prev2;
+	listint_t *current, *save_current, *prev, *save_prev;
 
 	if (list == NULL)
 		return;
 
-	curr = next = *list;
-	while (curr != NULL)
+	current = save_current = *list;
+	while (current)
 	{
-		while (curr->prev != NULL)
+		while (current->prev)
 		{
-			prev = curr->prev;
-			prev2 = prev;
-			if (prev->n > curr->n)
-				swapem(prev, curr, list);
-			curr = prev2;
+			prev = current->prev;
+			save_prev = prev;
+			if (prev->n > current->n)
+				swap(prev, current, list);
+			current = save_prev;
 		}
-		curr = next->next;
-		next = curr;
+		current = save_current->next;
+		save_current = current;
 	}
 
 }
